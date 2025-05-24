@@ -1,1 +1,19 @@
-<h1>My first page! :D</h1>
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Welcome!</title>
+        <link rel="icon" type="image/x-icon" href="{{ asset('images/library_icon.png') }}">
+        <link rel="stylesheet" href="{{ asset('css/homepage.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/header.css') }}">
+    </head>
+    <body>
+        {{include('template_fragments/header.html.twig')}}
+        <main id="m_homepage_container">
+            <div id="m_homepage_content">
+                <h1>Home Page</h1>
+            </div>
+        </main>
+        {{include('template_fragments/footer.html.twig')}}
+    </body>
+</html>
