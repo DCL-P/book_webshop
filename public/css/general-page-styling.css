@@ -1,0 +1,64 @@
+*{
+    font-family:Arial, Helvetica, sans-serif;
+    color:white;
+}
+
+body{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+
+    background-color: rgb(174, 132, 126);
+}
+
+
+
+#main-content{
+    width: 70%;
+
+    /* to make sure the main content takes up an appropriate amount of space on the website if there isnt enough content (it's set too 80 since the header and footer both take up around 15% of the page space) */
+    min-height: 80vh;
+
+    display: flex;
+    justify-content:center;
+}
+
+#main-content-nested{
+    width: 100%;
+
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+}
+
+.content-containers{
+    padding: 10px;
+
+    border-radius: 25px;
+}
+
+.content-spacing{
+    gap: 10px;
+}
+
+.medium-content-spacing{
+    gap: 20px;
+}
+
+.large-content-spacing{
+    gap: 40px;
+}
+
+.center-content{
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+}
+
+.remove-default-styling{
+    margin: 0;
+}
+
+.content-padding{
+    padding: 10px;
+}

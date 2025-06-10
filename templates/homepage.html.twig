@@ -4,14 +4,22 @@
         <meta charset="UTF-8">
         <title>Welcome!</title>
         <link rel="icon" type="image/x-icon" href="{{ asset('images/library_icon.png') }}">
+        <link rel="stylesheet" href="{{ asset('css/general-page-styling.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/header-footer.css') }}">
         <link rel="stylesheet" href="{{ asset('css/homepage.css') }}">
-        <link rel="stylesheet" href="{{ asset('css/header.css') }}">
     </head>
     <body>
         {{include('template_fragments/header.html.twig')}}
-        <main id="m_homepage_container">
-            <div id="m_homepage_content">
-                <h1>Home Page</h1>
+        <main id="main-content">
+            <div id="main-content-nested" class="medium-content-spacing center-content">
+                <div id="homepage-banner-content" class="medium-content-spacing">
+                    <div id="homepage-banner-text">
+                        <h1>Welcome to DCL-P's book webshop!</h1>
+                        <p>Enjoy reading or listening too any e-book you can imagine!</p>
+                        <p>DCLP's bookwebshop has it all (except for when it doesn't, then you'll have too ask an employee to add it..)</p>
+                    </div>
+                    <img id="homepage-banner-image" src="{{ asset('images/cloud_library_icon.png') }}">
+                </div>
             </div>
         </main>
         {{include('template_fragments/footer.html.twig')}}

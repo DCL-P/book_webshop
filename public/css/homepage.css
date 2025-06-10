@@ -1,14 +1,16 @@
-h1{
-    color: blue;
+
+
+#homepage-banner-content{
+    display: flex;
+    justify-content: space-between;
 }
 
-#m_homepage_container{
-    width: 100%;
-
+#homepage-banner-text{
     display: flex;
+    flex-direction: column;
     justify-content: center;
 }
 
-#m_homepage_content{
-    width: 70%;
+#homepage-banner-image{
+    width:500px;
 }
