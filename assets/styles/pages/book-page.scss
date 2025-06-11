@@ -1,0 +1,107 @@
+#banner{
+    position: relative;
+
+    height: 700px;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    padding: 10px;
+}
+
+#banner-title{
+    position:absolute;
+    border-radius: 25px;
+    padding:10px;
+    background-color: rgb(179, 144, 138);
+
+    margin: 0px;
+}
+
+
+
+
+
+#library-desc-container{
+    width: 100%;
+
+    display: flex;
+    gap: 10px;
+    
+}
+
+#library-info-container{
+    display: flex;
+    flex-direction: row;
+    width: 50%;
+}
+
+
+
+#desc-container-1{
+    background-color: rgb(184, 142, 133);
+    border-radius: 25px;
+    width:50%;
+
+    display:flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+#desc-container-2{
+    background-color: rgb(206, 158, 144);
+    border-radius: 25px;
+    width:50%;
+}
+
+#personal-desc-container{
+    background-color: rgb(223, 176, 164);
+    border-radius: 25px;
+    width: 50%;
+
+    overflow: scroll;
+    max-height: 250px;
+
+}
+
+#google-review-container{
+    height: 50%; 
+    flex-direction: row; 
+    justify-content: space-between;
+}
+
+#google-reviews-icon{
+    height: 50px; 
+    width: 100px;
+}
+
+#square-meters-container{
+    height: 50%;
+}
+
+
+
+
+.content-containers{
+    padding: 10px;
+
+    border-radius: 25px;
+}
+
+.content-spacing{
+    gap: 10px;
+}
+
+.center-content{
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+}
+
+.remove-default-styling{
+    margin: 0;
+}
+
+.content-padding{
+    padding: 10px;
+}

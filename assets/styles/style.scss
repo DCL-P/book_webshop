@@ -1,0 +1,15 @@
+// base [nothing has been added yet]
+// @import "base/";
+
+// components
+@import "components/header-footer.scss";
+
+//layout
+@import "layout/general-page-styling.scss";
+
+//pages
+@import "pages/book-page.scss";
+@import "pages/homepage.scss";
+
+//vendors [no vendors have been added yet. I'll probably add bootstrap later]
+// @import "vendors";
