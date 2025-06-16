@@ -1,13 +1,13 @@
 <header class="m_container">
     <div class="m_content">
         <div class="item_container">
-            <a href="./index.php">
+            <a href="{{url('home-route')}}">
                 <img id="icon" alt="library_icon" src="{{asset('images/header_library_icon.png')}}">
             </a>
             <h1>BookWorms</h1>
         </div>
         <nav class="item_container">
-            <a class="links" href="">search for book</a>
+            <a class="links" href="{{url('all-books-route')}}">search for book</a>
             <a class="links" href="">sign up</a>
             <a class="links" href="">login</a>
         </nav>
