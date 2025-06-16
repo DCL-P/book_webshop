@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Welcome!</title>
+        {{encore_entry_link_tags('app')}}
+        <link rel="icon" type="image/x-icon" href="{{ asset('images/library_icon.png') }}">
+    </head>
+    <body>
+        {{include('template_fragments/header.html.twig')}}
+        <main id="main-content">
+            <div id="main-content-nested" class="medium-content-spacing center-content">
+                <div>
+                    <h1>This is the page where all the books from the database are displayed</h1>
+                </div>
+                {%for book in all_books_array%}
+                    {{dump(book)}}
+                {%endfor%}
+            </div>
+        </main>
+        {{include('template_fragments/footer.html.twig')}}
+    </body>
+</html>
