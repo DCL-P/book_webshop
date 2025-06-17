@@ -14,7 +14,9 @@
                     <h1>This is the page where all the books from the database are displayed</h1>
                 </div>
                 {%for book in all_books_array%}
-                    {{dump(book)}}
+                    <a href="{{ url('book_page', { 'book_id': book.id }) }}"> 
+                        <img style="width:300px; height: 500px;" src="{{ asset('images/' ~ book.image) }}" alt="{{book.name}}_book_image">
+                    </a>
                 {%endfor%}
             </div>
         </main>
