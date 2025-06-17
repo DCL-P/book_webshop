@@ -55,7 +55,7 @@ class Books
         return $this;
     }
 
-    public function getGenre(): ?int
+    public function getGenre(): ?string
     {
         return $this->genre;
     }
