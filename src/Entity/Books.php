@@ -60,7 +60,7 @@ class Books
         return $this->genre;
     }
 
-    public function setGenre(?int $genre): static
+    public function setGenre(?string $genre): static
     {
         $this->genre = $genre;
 
@@ -108,7 +108,7 @@ class Books
         return $this->description;
     }
 
-    public function setDescription(int $description): static
+    public function setDescription(string $description): static
     {
         $this->description = $description;
 
