@@ -13,7 +13,7 @@ body{
 
 
 
-#main-content{
+.main-content{
     width: 70%;
 
     /* to make sure the main content takes up an appropriate amount of space on the website if there isnt enough content (it's set too 80 since the header and footer both take up around 15% of the page space) */
@@ -23,12 +23,16 @@ body{
     justify-content:center;
 }
 
-#main-content-nested{
+.main-content-nested{
     width: 100%;
 
     display: flex;
     flex-direction: column;
     padding: 10px;
+}
+
+.fit-main-content{
+    width: 100%;
 }
 
 .content-containers{
