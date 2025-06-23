@@ -1,0 +1,32 @@
+.book-list-grid{
+    display: grid;
+
+    // determine amount of columns in grid
+    grid-template-columns: auto auto auto;
+    gap:50px;
+    padding: 15px;
+}
+
+.book-image{
+    display: flex;
+    justify-content: center;
+}
+
+.description-container{
+    display: flex;
+    flex-direction: row;
+    gap: 80px;
+}
+
+.book-image-res{
+    height: 500px;
+    width: 300px;
+}
+
+// responsive page layout for ipad/laptop screens
+@media screen and (max-width: 1600px){
+    .book-image-res{
+        height: 300px;
+        width: 200px;
+    }
+};
