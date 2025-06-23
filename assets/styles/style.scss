@@ -2,13 +2,14 @@
 // @import "base/";
 
 // components
-@import "components/header-footer.scss";
+@import "components/_header-footer.scss";
 
 //layout
-@import "layout/general-page-styling.scss";
+@import "layout/_general-page-styling.scss";
 
 //pages
-@import "pages/book-page.scss";
-@import "pages/homepage.scss";
+@import "pages/_book-page.scss";
+@import "pages/_book-pages.scss";
+@import "pages/_homepage.scss";
 
 //vendors [are imported seperately in the app.js]
