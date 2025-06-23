@@ -103,7 +103,7 @@ class Books
         return $this;
     }
 
-    public function getDescription(?string $description): ?string
+    public function getDescription(): ?string
     {
         return $this->description;
     }
