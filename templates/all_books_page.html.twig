@@ -8,14 +8,11 @@
     </head>
     <body>
         {{include('template_fragments/header.html.twig')}}
-        <main id="main-content">
-            <div id="main-content-nested" class="medium-content-spacing center-content">
-                <div>
-                    <h1>This is the page where all the books from the database are displayed</h1>
-                </div>
+        <main class="main-content">
+            <div class="fit-main-content book-list-grid medium-content-spacing">
                 {%for book in all_books_array%}
-                    <a href="{{ url('book_page', { 'book_id': book.id }) }}"> 
-                        <img style="width:300px; height: 500px;" src="{{ asset('images/' ~ book.image) }}" alt="{{book.name}}_book_image">
+                    <a class="book-image" href="{{ url('book_page', { 'book_id': book.id }) }}"> 
+                        <img class="book-image-res" src="{{ asset('images/' ~ book.image) }}" alt="{{book.name}}_book_image">
                     </a>
                 {%endfor%}
             </div>
