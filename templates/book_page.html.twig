@@ -8,18 +8,30 @@
     </head>
     <body>
         {{include('template_fragments/header.html.twig')}}
-        <main id="main-content">
-            <div id="main-content-nested" class="medium-content-spacing center-content">
-                <div>
-                    <h1>This is the page where all the books from the database are displayed</h1>
+        <main class="main-content">
+            <div class="book-container medium-content-spacing center-content">
+                <img class="book-image-res" src="{{ asset('images/' ~ book_data[0].image) }}">
+                <div class="book-info-container">
+                    <div>    
+                        <h3>GENRE</h3>
+                        <p>{{book_data[0].genre}}</p>
+                    </div>
+
+                    <div>
+                        <h3>PRICE</h3>
+                        <p>{{book_data[0].price}}</p>
+                    </div>
+                    
+                    <div>
+                        <h3>AUTHOR</h3>
+                        <p>{{book_data[0].author}}</p>
+                    </div>
+
+                    <div>
+                        <h3>DESCRIPTION</h3>
+                        <p>{{book_data[0].description}}</p>
+                    </div>
                 </div>
-                {%for data in book_data%}
-                    {{data.name}}
-                    {{data.genre}}
-                    {{data.price}}
-                    {{data.author}}
-                    {{data.image}}
-                {%endfor%}
             </div>
         </main>
         {{include('template_fragments/footer.html.twig')}}
