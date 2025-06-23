@@ -3,22 +3,20 @@
     <head>
         <meta charset="UTF-8">
         <title>Welcome!</title>
+        {{encore_entry_link_tags('app')}}
         <link rel="icon" type="image/x-icon" href="{{ asset('images/library_icon.png') }}">
-        <link rel="stylesheet" href="{{ asset('css/general-page-styling.css') }}">
-        <link rel="stylesheet" href="{{ asset('css/header-footer.css') }}">
-        <link rel="stylesheet" href="{{ asset('css/homepage.css') }}">
     </head>
     <body>
         {{include('template_fragments/header.html.twig')}}
-        <main id="main-content">
-            <div id="main-content-nested" class="medium-content-spacing center-content">
+        <main class="main-content">
+            <div class="main-content-nested medium-content-spacing center-content">
                 <div id="homepage-banner-content" class="medium-content-spacing">
                     <div id="homepage-banner-text">
                         <h1>Welcome to DCL-P's book webshop!</h1>
                         <p>Enjoy reading or listening too any e-book you can imagine!</p>
                         <p>DCLP's bookwebshop has it all (except for when it doesn't, then you'll have too ask an employee to add it..)</p>
                     </div>
-                    <img id="homepage-banner-image" src="{{ asset('images/cloud_library_icon.png') }}">
+                    <img id="homepage-banner-image" src="{{ asset('images/cloud_library_icon.png') }}" alt="image-of-bookshelf">
                 </div>
             </div>
         </main>
