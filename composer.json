@@ -16,6 +16,7 @@
         "symfony/console": "7.2.*",
         "symfony/dotenv": "7.2.*",
         "symfony/flex": "^2.7.1",
+        "symfony/form": "7.2.*",
         "symfony/framework-bundle": "7.2.*",
         "symfony/runtime": "7.2.*",
         "symfony/twig-bundle": "7.2.*",
@@ -82,6 +83,10 @@
         {
             "type": "composer",
             "url": "http://repo.packagist.org"
+        },
+        {
+            "type": "composer",
+            "url": "http://raw.githubusercontent.com/symfony/recipes/flex/main/symfony.form.7.2.json"
         }
     ]   
     

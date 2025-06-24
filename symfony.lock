@@ -72,6 +72,12 @@
             "./.env.dev"
         ]
     },
+    "symfony/form": {
+        "version": "7.2",
+        "recipe": {
+            "version": "7.2"
+        }
+    },
     "symfony/framework-bundle": {
         "version": "7.2",
         "recipe": {
