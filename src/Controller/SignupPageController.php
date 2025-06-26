@@ -12,14 +12,25 @@ use App\Entity\Users;
 use App\Form\CreateUserForm;
 
 //for encrypting passwords upon account creation
-use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
+use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface; //this interface makes sure you can easily hash yan inputted password
+use Symfony\Component\Security\Http\Authentication\UserAuthenticatorInterface;
 
 
 //---CONTROLLER IS NOT FULLY FUNCTIONAL YET DUE TO PASSWORD HASHING NOT BEING USED CORRECTLY---//
-final class SignupPageController extends AbstractController
+class SignupPageController extends AbstractController
 {
+
+    private $passwordHasher;
+    private $em;
+
+    //for dependency injections, i decided too go for a constructor injection, since this method is a lot more maintainable then method injection (which requires you to import the dependency in every single method in your class..)
+    public function __construct(UserPasswordHasherInterface $UserPasswordHasherInterface, EntityManagerInterface $EntityManagerInterface){
+        $this->passwordHasher = $UserPasswordHasherInterface;
+        $this->em = $EntityManagerInterface;
+    }
+
     #[Route('/signup', name: 'signup_page')]
-    public function index(Request $request, EntityManagerInterface $em, UserPasswordHasherInterface $encrypt_password): Response
+    public function index(Request $request): Response
     {
         $user = new Users();
 
@@ -29,19 +40,20 @@ final class SignupPageController extends AbstractController
 
         if($form->IsSubmitted() && $form->IsValid()){
 
-            //fetch all the data inserted into the sumbitted form
+            //fetching all the data from the submitted form
             $form_data = $form->getData();
-            var_dump($form_data);
-            var_dump($user->getPassword());
+
+            //since the form is connected too the Users entity, you can make use of the entities getters and setters!
+            //using entity getter to fetch password, but might change it too manually fetch it out of the form. For security reasons.
+            $plain_password = $form_data->getPassword();
 
             //encrypting user password
-            $plain_password = $form_data->getPassword();
-            $hashed_password = $encrypt_password->hashPassword($user,  $plain_password);
+            $hashed_password = $this->passwordHasher->hashPassword($user, $plain_password);
             $user->setPassword($hashed_password);
 
             //using the entity manager interface to commit and push the newly created user record too the database
-            $em->persist($user);
-            $em->flush();
+            $this->em->persist($user);
+            $this->em->flush();
 
             $submit_message = 'You successfuly created a new account! :D';
             return $this->render('signup_page.html.twig', ['create_account_form' => $form, 'submit_message' => $submit_message]);
