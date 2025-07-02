@@ -9,6 +9,9 @@ use Doctrine\ORM\Mapping as ORM;
 //for password encryption
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 
+//to implement user login 
+use Symfony\Component\Security\Core\User\UserInterface;
+
 #[ORM\Entity(repositoryClass: UsersRepository::class)]
 class Users implements PasswordAuthenticatedUserInterface
 {
@@ -18,7 +21,7 @@ class Users implements PasswordAuthenticatedUserInterface
     private ?int $id = null;
 
     #[ORM\Column(length: 100)]
-    private ?string $name = null;
+    private ?string $username = null;
 
     #[ORM\Column(length: 200)]
     private ?string $email = null;
@@ -41,14 +44,14 @@ class Users implements PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    public function getName(): ?string
+    public function getUsername(): ?string
     {
-        return $this->name;
+        return $this->username;
     }
 
-    public function setName(string $name): static
+    public function setUsername(string $username): static
     {
-        $this->name = $name;
+        $this->username = $username;
 
         return $this;
     }
