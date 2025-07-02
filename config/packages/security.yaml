@@ -16,6 +16,15 @@ security:
         main:
             lazy: true
             provider: users_in_memory
+            form_login:
+                login_path: login-page
+                check_path: login-page
+                username_parameter: username
+                password_parameter: password
+                enable_csrf: true
+            logout:
+                path:   logout-page
+                target: home-route
 
             # activate different ways to authenticate
             # https://symfony.com/doc/current/security.html#the-firewall
