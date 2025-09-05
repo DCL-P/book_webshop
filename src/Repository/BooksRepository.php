@@ -40,4 +40,15 @@ class BooksRepository extends ServiceEntityRepository
                ->getResult()
            ;
        }
+
+       //find all books based on given genre
+       public function fetchBooksByGenre($value): array
+       {
+            return $this->createQueryBuilder('b')
+                ->join('b.genre', 'g')
+                ->andWhere('g in (:genres)')
+                ->setParameter('genres', $value)
+                ->getQuery()
+                ->getResult();
+       }
 }
