@@ -3,17 +3,95 @@
 namespace App\DataFixtures;
 
 use App\Entity\Books;
+use App\Entity\Genre;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
 
-class BookFixtures extends Fixture
+class MainFixture extends Fixture
 {
     public function load(ObjectManager $manager): void
     {
+        $genre_1 = "Dystopian";
+        $genre_2 = "Self-help";
+        $genre_3 = "Fiction";
+        $genre_4 = "Philosophy";
+        $genre_5 = "History";
+        $genre_6 = "Adventure";
+        $genre_7 = "Classic";
+        $genre_8 = "Fantasy";
+        $genre_9 = "Poetry";
+        $genre_10 = "Psychology";
+        $genre_11 = "Spirituality";
+
+
+        //GENRES
+        $all_genres = [
+            $genre_1,
+            $genre_2,
+            $genre_3, 
+            $genre_4,
+            $genre_5, 
+            $genre_6, 
+            $genre_7, 
+            $genre_8, 
+            $genre_9,
+            $genre_10, 
+            $genre_11
+        ];
+
+
+        $genres_list = [];
+
+        $pos_counter = 0;
+        Foreach($all_genres as $genre){
+            $genres_list[$genre] = ['name' =>$genre];
+            $pos_counter += 1;
+        };
+
+        Foreach ($genres_list as $data) {
+            $genre = new Genre();
+            $genre->setName($data['name']);
+            $manager->persist($genre);
+        };
+
+
+
+        $manager->flush();
+
+
+
+
+        //fetched genres
+        $book_genre_1 = $manager->getRepository(Genre::class)->findOneBy(['name'=>$genres_list[$genre_1]['name']]);
+        $book_genre_2 = $manager->getRepository(Genre::class)->findOneBy(['name'=>$genres_list[$genre_2]['name']]);
+        $book_genre_3 = $manager->getRepository(Genre::class)->findOneBy(['name'=>$genres_list[$genre_3]['name']]);
+        $book_genre_4 = $manager->getRepository(Genre::class)->findOneBy(['name'=>$genres_list[$genre_4]['name']]);
+        $book_genre_5 = $manager->getRepository(Genre::class)->findOneBy(['name'=>$genres_list[$genre_5]['name']]);
+        $book_genre_6 = $manager->getRepository(Genre::class)->findOneBy(['name'=>$genres_list[$genre_6]['name']]);
+        $book_genre_7 = $manager->getRepository(Genre::class)->findOneBy(['name'=>$genres_list[$genre_7]['name']]);
+        $book_genre_8 = $manager->getRepository(Genre::class)->findOneBy(['name'=>$genres_list[$genre_8]['name']]);
+        $book_genre_9 = $manager->getRepository(Genre::class)->findOneBy(['name'=>$genres_list[$genre_9]['name']]);
+        $book_genre_10= $manager->getRepository(Genre::class)->findOneBy(['name'=>$genres_list[$genre_10]['name']]);
+        $book_genre_11= $manager->getRepository(Genre::class)->findOneBy(['name'=>$genres_list[$genre_11]['name']]);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        //BOOKS
         $books = [
             [
                 'name' => '1984',
-                'genre' => 'Dystopian',
+                'genre' => $book_genre_1,
                 'price' => 14.99,
                 'author' => 'George Orwell',
                 'image' => '1984.png',
@@ -21,7 +99,7 @@ class BookFixtures extends Fixture
             ],
             [
                 'name' => 'Atomic Habits',
-                'genre' => 'Self-help',
+                'genre' => $book_genre_2,
                 'price' => 19.99,
                 'author' => 'James Clear',
                 'image' => 'atomic_habits.png',
@@ -29,7 +107,7 @@ class BookFixtures extends Fixture
             ],
             [
                 'name' => 'Brave New World',
-                'genre' => 'Science Fiction',
+                'genre' => $book_genre_3,
                 'price' => 13.49,
                 'author' => 'Aldous Huxley',
                 'image' => 'brave_new_world.png',
@@ -37,7 +115,7 @@ class BookFixtures extends Fixture
             ],
             [
                 'name' => 'The Catcher in the Rye',
-                'genre' => 'Literary Fiction',
+                'genre' => $book_genre_3,
                 'price' => 12.99,
                 'author' => 'J.D. Salinger',
                 'image' => 'catcher_in_the_rye.png',
@@ -45,7 +123,7 @@ class BookFixtures extends Fixture
             ],
             [
                 'name' => 'Mini Philosophy',
-                'genre' => 'Philosophy',
+                'genre' => $book_genre_4,
                 'price' => 10.99,
                 'author' => 'Jonny Thomson',
                 'image' => 'mini_philosophy.png',
@@ -53,7 +131,7 @@ class BookFixtures extends Fixture
             ],
             [
                 'name' => 'Sapiens',
-                'genre' => 'History',
+                'genre' => $book_genre_5,
                 'price' => 21.99,
                 'author' => 'Yuval Noah Harari',
                 'image' => 'sapiens.png',
@@ -61,7 +139,7 @@ class BookFixtures extends Fixture
             ],
             [
                 'name' => 'The Alchemist',
-                'genre' => 'Adventure',
+                'genre' => $book_genre_6,
                 'price' => 15.00,
                 'author' => 'Paulo Coelho',
                 'image' => 'the_alchemist.png',
@@ -69,7 +147,7 @@ class BookFixtures extends Fixture
             ],
             [
                 'name' => 'The Book of Five Rings',
-                'genre' => 'Martial Arts / Philosophy',
+                'genre' => $book_genre_4,
                 'price' => 11.50,
                 'author' => 'Miyamoto Musashi',
                 'image' => 'the_book_of_five_rings.png',
@@ -77,7 +155,7 @@ class BookFixtures extends Fixture
             ],
             [
                 'name' => 'The Book Thief',
-                'genre' => 'Historical Fiction',
+                'genre' => $book_genre_3,
                 'price' => 14.50,
                 'author' => 'Markus Zusak',
                 'image' => 'the_book_thief.png',
@@ -85,7 +163,7 @@ class BookFixtures extends Fixture
             ],
             [
                 'name' => 'The Great Gatsby',
-                'genre' => 'Classic',
+                'genre' => $book_genre_7,
                 'price' => 9.99,
                 'author' => 'F. Scott Fitzgerald',
                 'image' => 'the_great_gatsby.png',
@@ -93,7 +171,7 @@ class BookFixtures extends Fixture
             ],
             [
                 'name' => 'The Hobbit',
-                'genre' => 'Fantasy',
+                'genre' => $book_genre_8,
                 'price' => 13.75,
                 'author' => 'J.R.R. Tolkien',
                 'image' => 'the_hobbit.png',
@@ -101,7 +179,7 @@ class BookFixtures extends Fixture
             ],
             [
                 'name' => 'The Odyssey',
-                'genre' => 'Epic Poetry',
+                'genre' => $book_genre_9,
                 'price' => 16.20,
                 'author' => 'Homer',
                 'image' => 'the_odyssey.png',
@@ -109,7 +187,7 @@ class BookFixtures extends Fixture
             ],
             [
                 'name' => 'The Power of Now',
-                'genre' => 'Spirituality',
+                'genre' => $book_genre_11,
                 'price' => 17.80,
                 'author' => 'Eckhart Tolle',
                 'image' => 'the_power_of_now.png',
@@ -117,7 +195,7 @@ class BookFixtures extends Fixture
             ],
             [
                 'name' => 'Thinking, Fast and Slow',
-                'genre' => 'Psychology',
+                'genre' =>  $book_genre_10,
                 'price' => 18.99,
                 'author' => 'Daniel Kahneman',
                 'image' => 'thinking_fast_and_slow.png',
@@ -125,7 +203,7 @@ class BookFixtures extends Fixture
             ],
             [
                 'name' => 'Wabi Sabi',
-                'genre' => 'Philosophy / Aesthetics',
+                'genre' => $book_genre_4,
                 'price' => 12.50,
                 'author' => 'Beth Kempton',
                 'image' => 'wabi_sabi.png',
@@ -142,6 +220,10 @@ class BookFixtures extends Fixture
             $book->setImage($data['image']);
             $book->setDescription($data['description']);
             $manager->persist($book);
+        }
+
+        foreach ($books as $data) {
+
         }
 
         $manager->flush();
