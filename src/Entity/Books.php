@@ -16,8 +16,9 @@ class Books
     #[ORM\Column(length: 200)]
     private ?string $name = null;
 
-    #[ORM\Column(nullable: true)]
-    private ?string $genre = null;
+    #[ORM\ManyToOne(targetEntity: Genre::class, inversedBy:"books")]
+    #[ORM\JoinColumn(name:"genre_id", referencedColumnName: "id")]
+    private ?Genre $genre = null;
 
     #[ORM\Column(nullable: true)]
     private ?int $price = null;
@@ -55,12 +56,12 @@ class Books
         return $this;
     }
 
-    public function getGenre(): ?string
+    public function getGenre(): ?Genre
     {
         return $this->genre;
     }
 
-    public function setGenre(?string $genre): static
+    public function setGenre(?Genre $genre): static
     {
         $this->genre = $genre;
 
