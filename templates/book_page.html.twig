@@ -10,11 +10,14 @@
         {{include('template_fragments/header.html.twig')}}
         <main class="main-content">
             <div class="book-container medium-content-spacing center-content">
-                <img class="book-image-res" src="{{ asset('images/' ~ book_data[0].image) }}">
+                <div>
+                    <a class="fa-solid fa-circle-plus fa-beat"></a>
+                    <img class="book-image-res" src="{{ asset('images/' ~ book_data[0].image) }}">
+                </div>
                 <div class="book-info-container">
                     <div>    
                         <h3>GENRE</h3>
-                        <p>{{book_data[0].genre}}</p>
+                        <p>{{book_data[0].genre.name}}</p>
                     </div>
 
                     <div>
