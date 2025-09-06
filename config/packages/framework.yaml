@@ -3,7 +3,10 @@ framework:
     secret: '%env(APP_SECRET)%'
 
     # Note that the session will be started ONLY if you read or write from it.
-    session: true
+    session: 
+        handler_id: null # This is the default session handler
+        cookie_lifetime: 3600 # Time in seconds before session expires (default is 1 hour)
+        cookie_samesite: lax
 
     #esi: true
     #fragments: true
