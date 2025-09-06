@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\UsersRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -29,8 +31,19 @@ class Users implements PasswordAuthenticatedUserInterface
     #[ORM\Column(type: Types::TEXT)]
     private ?string $password = null;
 
-    #[ORM\Column(type: Types::ARRAY, nullable: true)]
-    private ?array $book_list = null;
+    // #[ORM\Column(type: Types::ARRAY, nullable: true)]
+    // private ?array $book_list = null;
+
+    /**
+     * @var Collection<int, BookLists>
+     */
+    #[ORM\OneToMany(targetEntity: BookLists::class, mappedBy: 'user')]
+    private Collection $bookLists;
+
+    public function __construct()
+    {
+        $this->bookLists = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -88,6 +101,36 @@ class Users implements PasswordAuthenticatedUserInterface
     public function setBookList(?array $book_list): static
     {
         $this->book_list = $book_list;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, BookLists>
+     */
+    public function getBookLists(): Collection
+    {
+        return $this->bookLists;
+    }
+
+    public function addBookList(BookLists $bookList): static
+    {
+        if (!$this->bookLists->contains($bookList)) {
+            $this->bookLists->add($bookList);
+            $bookList->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeBookList(BookLists $bookList): static
+    {
+        if ($this->bookLists->removeElement($bookList)) {
+            // set the owning side to null (unless already changed)
+            if ($bookList->getUser() === $this) {
+                $bookList->setUser(null);
+            }
+        }
 
         return $this;
     }
