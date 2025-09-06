@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\BooksRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: BooksRepository::class)]
@@ -31,6 +33,17 @@ class Books
 
     #[ORM\Column(length: 1000, nullable: true)]
     private ?string $description = null;
+
+    /**
+     * @var Collection<int, BookLists>
+     */
+    #[ORM\ManyToMany(targetEntity: BookLists::class, mappedBy: 'list')]
+    private Collection $ConnectedLists;
+
+    public function __construct()
+    {
+        $this->ConnectedLists = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -112,6 +125,33 @@ class Books
     public function setDescription(string $description): static
     {
         $this->description = $description;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, BookLists>
+     */
+    public function getConnectedLists(): Collection
+    {
+        return $this->ConnectedLists;
+    }
+
+    public function addConnectedList(BookLists $connectedList): static
+    {
+        if (!$this->ConnectedLists->contains($connectedList)) {
+            $this->ConnectedLists->add($connectedList);
+            $connectedList->addList($this);
+        }
+
+        return $this;
+    }
+
+    public function removeConnectedList(BookLists $connectedList): static
+    {
+        if ($this->ConnectedLists->removeElement($connectedList)) {
+            $connectedList->removeList($this);
+        }
 
         return $this;
     }
