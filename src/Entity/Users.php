@@ -15,8 +15,9 @@ use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 
 #[ORM\Entity(repositoryClass: UsersRepository::class)]
-class Users implements PasswordAuthenticatedUserInterface
+class Users implements UserInterface, PasswordAuthenticatedUserInterface
 {
+
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
@@ -31,6 +32,8 @@ class Users implements PasswordAuthenticatedUserInterface
     #[ORM\Column(type: Types::TEXT)]
     private ?string $password = null;
 
+    private $roles = [];
+
     // #[ORM\Column(type: Types::ARRAY, nullable: true)]
     // private ?array $book_list = null;
 
@@ -44,6 +47,28 @@ class Users implements PasswordAuthenticatedUserInterface
     {
         $this->bookLists = new ArrayCollection();
     }
+
+    public function getUserIdentifier(): string
+    {
+        return $this->email;
+    }
+
+    
+    public function getRoles(): array
+    {
+        $roles = $this->roles;
+
+        // guarantee every user at least has ROLE_USER
+        $roles[] = 'ROLE_USER';
+
+        return array_unique($roles);
+    }
+
+    public function eraseCredentials(): void
+    {
+        // If you store temporary sensitive data, clear it here
+    }
+
 
     public function getId(): ?int
     {
