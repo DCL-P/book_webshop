@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Welcome!</title>
+        {{encore_entry_link_tags('app')}}
+        <link rel="icon" type="image/x-icon" href="{{ asset('images/library_icon.png') }}">
+    </head>
+    <body>
+        {{include('template_fragments/header.html.twig')}}
+        <main class="main-content">
+            <div class="main-content-nested medium-content-spacing center-content">
+                {%if(all_books is empty)%}
+                    <p>no books added to the demo list</p>
+                {%else%}
+                    <div style="background-color: grey">
+                        <h1>{{book_list_name}}</h1>
+                        <a href="{{url('book-list', {'book-list-id': 'demo-list'})}}"><button>view list</button></a>
+                    </div>
+                {%endif%}
+            </div>
+        </main>
+        {{include('template_fragments/footer.html.twig')}}
+    </body>
+</html>
