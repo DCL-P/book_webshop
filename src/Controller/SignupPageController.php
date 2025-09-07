@@ -9,14 +9,13 @@ use Symfony\Component\Routing\Attribute\Route;
 use Doctrine\ORM\EntityManagerInterface;
 
 use App\Entity\Users;
-use App\Form\CreateUserForm;
+use App\Form\UserForm;
 
 //for encrypting passwords upon account creation
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface; //this interface makes sure you can easily hash yan inputted password
 use Symfony\Component\Security\Http\Authentication\UserAuthenticatorInterface;
 
 
-//---CONTROLLER IS NOT FULLY FUNCTIONAL YET DUE TO PASSWORD HASHING NOT BEING USED CORRECTLY---//
 class SignupPageController extends AbstractController
 {
 
@@ -29,12 +28,12 @@ class SignupPageController extends AbstractController
         $this->em = $EntityManagerInterface;
     }
 
-    #[Route('/signup', name: 'signup_page')]
+    #[Route('/signup', name: 'signup-page')]
     public function index(Request $request): Response
     {
         $user = new Users();
 
-        $form = $this->createForm(CreateUserForm::class, $user);
+        $form = $this->createForm(UserForm::class, $user);
 
         $form->handleRequest($request);
 
@@ -65,4 +64,3 @@ class SignupPageController extends AbstractController
         return $this->render('signup_page.html.twig', ['create_account_form' => $form]);
     }
 }
-//---CONTROLLER IS NOT FULLY FUNCTIONAL YET DUE TO PASSWORD HASHING NOT BEING USED CORRECTLY---//
