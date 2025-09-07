@@ -27,25 +27,30 @@ final class BookPageController extends AbstractController
     {
 
         $message = "This book has been successfully added to your book list!";
+        $user = $this->getUser();
 
-        $session = $this->rm->getSession();
-
-        $temp_guest_list = $session->get('temp_book_list', [
-            'name' => 'demo list',
-            'books' => []
-        ]);
-
-
-        if(!in_array($book_id, $temp_guest_list['books']))
-        {
-            $temp_guest_list['books'][] = $book_id;
+        if($user){
+            
         } else {
-            $message = "This book already exist in your book list!";
+            $session = $this->rm->getSession();
+
+            $temp_guest_list = $session->get('temp_book_list', [
+                'name' => 'demo list',
+                'books' => []
+            ]);
+
+
+            if(!in_array($book_id, $temp_guest_list['books']))
+            {
+                $temp_guest_list['books'][] = $book_id;
+            } else {
+                $message = "This book already exist in your book list!";
+            }
+
+            $session->set('temp_book_list', $temp_guest_list);
+
+            return $message;
         }
-
-        $session->set('temp_book_list', $temp_guest_list);
-
-        return $message;
 
     }
 
@@ -58,38 +63,48 @@ final class BookPageController extends AbstractController
         $book_data_object = $this->BooksRepository->FetchBookByID($book_id);
 
 
-        //form for temp users
+        //forms for both the logged in and temp user
         $temp_form = $this->createForm(SubmitForm::class);
+        $logged_in_form = $this->createForm(AddBookForm::class);
 
-        $temp_form->handleRequest($request);
+        $user = $this->getUser();
+        $used_form = NULL;
 
-        if($temp_form->isSubmitted()){
-            if($temp_form->get('submit_button')->isClicked()){
-                $message = $this->addBookToList($book_id);
+
+        //if user logged in, use logged_in_form, otherwise use temp_form
+        if($user)
+        {
+            $logged_in_form = $this->createForm(AddBookForm::class);
+
+            $used_form = $logged_in_form;
+
+            $logged_in_form->handleRequest($request);
+
+            if($logged_in_form->isSubmitted() && $logged_in_form->isValid())
+            {
+                $selectedBookLists = $logged_in_form->get('BookLists')->getData();
+
+                if(!empty($selectedBookLists))
+                {
+                    if(!empty($user)){
+
+                    } else {
+                        $this->addBookToList($book_id);
+                    }
+                }
             }
         }
-
-
-
-
-
-
-
-        //form for logged in users
-        $form = $this->createForm(AddBookForm::class);
-
-        $form->handleRequest($request);
-
-        if($form->isSubmitted() && $form->isValid())
+        else
         {
-            $selectedBookLists = $form->get('BookLists')->getData();
+            $temp_form = $this->createForm(SubmitForm::class);
 
-            if(!empty($selectedBookLists))
-            {
-                if(!empty($user)){
+            $used_form = $temp_form;
 
-                } else {
-                    $this->addBookToList($book_id);
+            $temp_form->handleRequest($request);
+
+            if($temp_form->isSubmitted()){
+                if($temp_form->get('submit_button')->isClicked()){
+                    $message = $this->addBookToList($book_id);
                 }
             }
         }
@@ -99,8 +114,8 @@ final class BookPageController extends AbstractController
         return $this->render('book_page.html.twig', [
             'book_data' => $book_data_object,
             'message' => $confirmation_message,
-            'add_to_booklist_form' => $form,
-            'add_to_temp_booklist_form' => $temp_form,
+            'add_to_booklist_form' => $used_form,
+            'user'=>$user
         ]);
     }
 }
