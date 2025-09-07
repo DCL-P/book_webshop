@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Welcome!</title>
+        {{encore_entry_link_tags('app')}}
+        <link rel="icon" type="image/x-icon" href="{{ asset('images/library_icon.png') }}">
+    </head>
+    <body>
+        {{include('template_fragments/header.html.twig')}}
+        <main class="main-content">
+            <div class="main-content-nested medium-content-spacing center-content">
+                <div style="background-color: grey">
+                    <h1>{{book_list_name}}</h1>
+                    {%for book in all_books%}
+                        <a class="book-image" href="{{ url('book_page', { 'book_id': book.id }) }}"> 
+                            <img class="book-image-res" src="{{ asset('images/' ~ book.image) }}" alt="{{book.name}}_book_image">
+                        </a>
+                    {%endfor%}
+                </div>
+            </div>
+        </main>
+        {{include('template_fragments/footer.html.twig')}}
+    </body>
+</html>
