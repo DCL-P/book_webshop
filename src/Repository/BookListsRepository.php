@@ -3,6 +3,7 @@
 namespace App\Repository;
 
 use App\Entity\BookLists;
+use App\Entity\User;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
@@ -40,4 +41,22 @@ class BookListsRepository extends ServiceEntityRepository
     //            ->getOneOrNullResult()
     //        ;
     //    }
+
+    public function createBookList($user, $book_list_name)
+    {
+        $bookList = new BookList;
+        $bookList->setName($book_list_name);
+        $bookList->setUser($user);
+
+        $em = $this->getEntityManager();
+        $em->persist($bookList);
+        $em->flush;
+
+        return $bookList;
+    }
+
+    // addBookToBooklist($book_list_id, $book_id)
+    // {
+        
+    // }
 }
