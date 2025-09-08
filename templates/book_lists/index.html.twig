@@ -10,13 +10,26 @@
         {{include('template_fragments/header.html.twig')}}
         <main class="main-content">
             <div class="main-content-nested medium-content-spacing center-content">
-                {%if(all_books is empty)%}
+                {%if(has_books == false)%}
                     <p>no books added to the demo list</p>
                 {%else%}
-                    <div style="background-color: grey">
-                        <h1>{{book_list_name}}</h1>
-                        <a href="{{url('book-list', {'book-list-id': 'demo-list'})}}"><button>view list</button></a>
-                    </div>
+                    {%if(user)%}
+                        <p>your personal book lists</p>
+                        <a href="{{url('app_create_book_list')}}"><button>create new book list</button></a>
+
+                        
+                        {%for book_list in book_lists%}
+                            <div style="background-color: grey">
+                                <h1>{{book_list['name']}}</h1>
+                                <a href="{{url('book-list', {'book_list_id': book_list['id']})}}"><button>view list</button></a>
+                            </div>
+                        {%endfor%}
+                    {%else%}
+                        <div style="background-color: grey">
+                            <h1>{{book_lists[0]['name']}}</h1>
+                            <a href="{{url('book-list', {'book_list_id': 0})}}"><button>view list</button></a>
+                        </div>
+                    {%endif%}
                 {%endif%}
             </div>
         </main>
