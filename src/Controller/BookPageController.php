@@ -7,9 +7,12 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Attribute\Route;
 use App\Repository\BooksRepository;
+use App\Entity\BookLists;
+use App\Entity\Books;
 use Symfony\Component\HttpFoundation\RequestStack;
 use App\Form\AddBookForm;
 use App\Form\SubmitForm;
+use Doctrine\ORM\EntityManagerInterface;
 
 final class BookPageController extends AbstractController
 {
@@ -30,6 +33,7 @@ final class BookPageController extends AbstractController
         $user = $this->getUser();
 
         if($user){
+
             
         } else {
             $session = $this->rm->getSession();
@@ -55,7 +59,7 @@ final class BookPageController extends AbstractController
     }
 
     #[Route('book/{book_id}', name: 'book_page')]
-    public function index(int $book_id, Request $request): Response
+    public function index(int $book_id, Request $request, EntityManagerInterface $em): Response
     {
         $confirmation_message = '';
 
@@ -74,30 +78,32 @@ final class BookPageController extends AbstractController
         //if user logged in, use logged_in_form, otherwise use temp_form
         if($user)
         {
-            $logged_in_form = $this->createForm(AddBookForm::class);
 
             $used_form = $logged_in_form;
 
-            $logged_in_form->handleRequest($request);
+            $used_form->handleRequest($request);
 
-            if($logged_in_form->isSubmitted() && $logged_in_form->isValid())
+
+            //DOESNT WORK!
+            if($used_form->isSubmitted() && $used_form->isValid())
             {
-                $selectedBookLists = $logged_in_form->get('BookLists')->getData();
+                
+                $selected_name = $used_form->get('name')->getData();
 
-                if(!empty($selectedBookLists))
-                {
-                    if(!empty($user)){
+                $selected_book_list = $em->getRepository(BookLists::class)->findOneBy(['name'=>$selected_name]);
 
-                    } else {
-                        $this->addBookToList($book_id);
-                    }
-                }
+                $selected_book = $em->getRepository(Books::class)->find($book_id);
+
+                $selected_book_list->AddBook($selected_book);
+
+                $em->persist($selected_book_list);
+
+                $em->flush();
             }
+            //DOESNT WORK!
         }
         else
         {
-            $temp_form = $this->createForm(SubmitForm::class);
-
             $used_form = $temp_form;
 
             $temp_form->handleRequest($request);
