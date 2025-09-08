@@ -33,11 +33,11 @@ class BookLists
         $this->list = new ArrayCollection();
     }
 
-    public function AddBook(Book $book): self
+    public function AddBook(Books $book)
     {
-        if(!$this->books->contains($book))
+        if(!$this->list->contains($book))
         {
-            $this->books[] = $book;
+            $this->list[] = $book;
         }
     }
 
