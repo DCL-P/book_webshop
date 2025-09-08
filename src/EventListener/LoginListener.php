@@ -3,50 +3,69 @@
 namespace App\EventListener;
 
 use Symfony\Component\EventDispatcher\Attribute\AsEventListener;
-use Symfony\Component\Security\Http\Event\InteractiveLoginEvent;
+use Symfony\Component\Security\Http\Event\LoginSuccessEvent;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
+use Symfony\Component\HttpFoundation\RequestStack;
 use Doctrine\ORM\EntityManagerInterface;
 use App\Entity\Books;
-use App\Entity\BooksLists;
+use App\Entity\BookLists;
 use App\Repository\BookListsRepository;
 use App\Repository\BooksRepository;
 
 
 final class LoginListener
 {
-    private $session;
+    private $requestStack;
     private $em;
     private $booksRepository;
+    private $bookListRepository;
 
-    public function __construct(EntityManagerInterface $em, BooksRepository $booksRepository, BookListsRepository $booksListRepository)
+    public function __construct(EntityManagerInterface $em, BooksRepository $booksRepository, BookListsRepository $booksListRepository, RequestStack $requestStack)
     {
         $this->em = $em;
         $this->booksRepository = $booksRepository;
-        $this->bookListRepository = $bookListRepository;
+        $this->bookListRepository = $booksListRepository;
+        $this->requestStack = $requestStack;
     }
 
-    #[AsEventListener(event: 'security.authentication_login')]
-    public function onSecurityAuthenticationLogin(InteractiveLoginEvent $event, SessionInterface $session): void
+    #[AsEventListener(event: LoginSuccessEvent::class)]
+    public function __invoke(LoginSuccessEvent $event): void
     {
-        $user = $event->getAuthenticationToken()->getUser();
 
-        //return nothing if user isn't logged in
-        if (!$user instanceof \App\Entity\User) {
+        $user = $event->getUser();
+        if (!$user instanceof \App\Entity\Users) {
             return;
         }
 
-        $session_book_ids = $session->get('temp_book_list');
-        
-        if(!empty($session_book_ids['books']))
-        {
-            $bookList = $this->bookListRepository->createBookList('demo-list', $user);
+        $request = $this->requestStack->getCurrentRequest();
+        $session = $request?->getSession();
 
-            foreach($session_book_ids['books'] as $book_id)
-            {
-                $book = $this->bookRepository->FetchBookByID($book_id);
-                $bookList->AddBook($book);
+        if (!$session) {
+            return;
+        } else {
+
+            $sessionBookIds = $session->get('temp_book_list');
+
+            if (!empty($sessionBookIds['books'])) {
+                //create new list
+                $bookList = new BookLists();
+                $bookList->setName('demo-list');
+
+                //bind list to logged in user lists
+                $bookList->setUser($user);
+
+                //submit session books to new booklist
+                foreach ($sessionBookIds['books'] as $bookId) {
+                    $book = $this->booksRepository->find($bookId);
+                    if ($book) {
+                        $bookList->addBook($book);
+                    }
+                }
+
+                //push changes to the db
+                $this->em->persist($bookList);
+                $this->em->flush();
             }
         }
-
     }
 }
