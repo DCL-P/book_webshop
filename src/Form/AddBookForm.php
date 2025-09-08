@@ -17,7 +17,7 @@ class AddBookForm extends AbstractType
         $builder
             ->add('BookLists', EntityType::class, [
                 'class' => BookLists::class,
-                'choice_label' => 'add book to book list'
+                'choice_label' => 'name'
             ])
         ;
     }
