@@ -5,6 +5,7 @@ namespace App\Entity;
 use App\Repository\BookListsRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+use App\Entity\Books;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: BookListsRepository::class)]
@@ -38,6 +39,14 @@ class BookLists
         if(!$this->list->contains($book))
         {
             $this->list[] = $book;
+        }
+    }
+
+    public function removeBook(Books $book)
+    {
+        if($this->list->contains($book))
+        {
+            $this->list->removeElement($book);
         }
     }
 
@@ -93,4 +102,13 @@ class BookLists
 
         return $this;
     }
+
+    // public function createBookList(string $name, Users $user)
+    // {
+    //     $bookList = new BookLists;
+    //     $bookList->setName($name);
+    //     $bookList->setUser($user);
+
+        
+    // }
 }
