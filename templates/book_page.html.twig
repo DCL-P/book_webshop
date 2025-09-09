@@ -15,10 +15,10 @@
                     {%if(user)%}
                         {{form_start(add_to_booklist_form)}}
                             {{form_row(add_to_booklist_form.BookLists)}}
-                            <button type="submit">add to book list</button>
+                            <button type="submit">add</button>
                         {{form_end(add_to_booklist_form)}}
                     {%else%}
-                        {{form(add_to_booklist_form)}}
+                        {{form(add_to_temp_booklist_form)}}
                     {%endif%}
                     </div>
                     <img class="book-image-res" src="{{ asset('images/' ~ book_data[0].image) }}">
