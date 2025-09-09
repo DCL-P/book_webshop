@@ -69,28 +69,28 @@ final class BookPageController extends AbstractController
 
         //forms for both the logged in and temp user
         $temp_form = $this->createForm(SubmitForm::class);
-        $logged_in_form = $this->createForm(AddBookForm::class);
 
-        $user = $this->getUser();
-        $used_form = NULL;
+        $logged_in_form = NULL;
+
+        $user = $this?->getUser();
 
 
         //if user logged in, use logged_in_form, otherwise use temp_form
         if($user)
         {
 
-            $used_form = $logged_in_form;
+            $all_user_book_lists = $em->getRepository(BookLists::class)->findBy(['user'=>$user]);
 
-            $used_form->handleRequest($request);
+            $logged_in_form = $this->createForm(AddBookForm::class, null, ['book_lists'=>$all_user_book_lists]);
 
+            $logged_in_form->handleRequest($request); //error comes from the request
 
             //DOESNT WORK!
-            if($used_form->isSubmitted() && $used_form->isValid())
+            if($logged_in_form->isSubmitted() && $logged_in_form->isValid())
             {
-                
-                $selected_name = $used_form->get('name')->getData();
+                $selected_name = $logged_in_form->get('BookLists')->getData();
 
-                $selected_book_list = $em->getRepository(BookLists::class)->findOneBy(['name'=>$selected_name]);
+                $selected_book_list = $em->getRepository(BookLists::class)->findOneBy(['name'=>$selected_name->getName()]);
 
                 $selected_book = $em->getRepository(Books::class)->find($book_id);
 
@@ -102,9 +102,9 @@ final class BookPageController extends AbstractController
             }
             //DOESNT WORK!
         }
-        else
+        
+        if(!$user)
         {
-            $used_form = $temp_form;
 
             $temp_form->handleRequest($request);
 
@@ -120,7 +120,8 @@ final class BookPageController extends AbstractController
         return $this->render('book_page.html.twig', [
             'book_data' => $book_data_object,
             'message' => $confirmation_message,
-            'add_to_booklist_form' => $used_form,
+            'add_to_booklist_form' => $logged_in_form,
+            'add_to_temp_booklist_form' => $temp_form,
             'user'=>$user
         ]);
     }
