@@ -15,6 +15,7 @@
                     {%for book in all_books%}
                         <a class="book-image" href="{{ url('book_page', { 'book_id': book.id }) }}"> 
                             <img class="book-image-res" src="{{ asset('images/' ~ book.image) }}" alt="{{book.name}}_book_image">
+                            <a href="{{url('remove-book', {'book_list_id': book_list_id, 'book_id': book.id})}}"><button>remove book from booklist</button></a>
                         </a>
                     {%endfor%}
                 </div>

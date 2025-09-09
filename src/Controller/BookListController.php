@@ -42,6 +42,23 @@ final class BookListController extends AbstractController
 
 
 
-        return $this->render('book_list/index.html.twig', ['all_books' => $all_books, 'book_list_name'=>$list_name]);
+        return $this->render('book_list/index.html.twig', ['all_books' => $all_books, 'book_list_name'=>$list_name, 'book_list_id'=>$book_list_id]);
+    }
+
+    #[Route('{book_list_id}/{book_id}', name: 'remove-book')]
+    public function removeBookFromList($book_list_id, $book_id, EntityManagerInterface $manager)
+    {
+        var_dump($book_list_id);
+        var_dump($book_id);
+        $book_list = $manager->getRepository(BookLists::class)->find($book_list_id);
+        $book = $manager->getRepository(Books::class)->find($book_id);
+
+        $book_list->removeBook($book);
+
+        $manager->persist($book_list);
+
+        $manager->flush();
+
+        return $this->redirectToRoute('book-lists');
     }
 }
