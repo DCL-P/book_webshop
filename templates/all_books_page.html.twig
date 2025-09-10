@@ -8,19 +8,23 @@
     </head>
     <body>
         {{include('template_fragments/header.html.twig')}}
-        <main class="main-content">
-            {{form_start(genre_filter)}}
-                {{form_row(genre_filter.Genre)}}
-                <button type="submit">filter</button>
-                <button><a href="{{url('all-books-route')}}">reset</a></button>
-            {{form_end(genre_filter)}}
-            <div class="fit-main-content book-list-grid medium-content-spacing">
-                {%for book in all_books_array%}
-                    <a class="book-image" href="{{ url('book_page', { 'book_id': book.id }) }}"> 
-                        <img class="book-image-res" src="{{ asset('images/' ~ book.image) }}" alt="{{book.name}}_book_image">
-                    </a>
-                {%endfor%}
-            </div>
+        <main class="main-content align-content-vertically">
+                <div>
+                    {{form_start(genre_filter, {'attr':{'class':'filter-bar'}})}}
+                        {{form_row(genre_filter.Genre)}}
+                        <div>
+                            <button type="submit">filter</button>
+                            <button><a href="{{url('all-books-route')}}">reset</a></button>
+                        </div>
+                    {{form_end(genre_filter)}}
+                </div>
+                <div class="fit-main-content book-list-grid medium-content-spacing">
+                    {%for book in all_books_array%}
+                        <a class="book-image" href="{{ url('book_page', { 'book_id': book.id }) }}"> 
+                            <img class="book-image-res" src="{{ asset('images/' ~ book.image) }}" alt="{{book.name}}_book_image">
+                        </a>
+                    {%endfor%}
+                </div>
         </main>
         {{include('template_fragments/footer.html.twig')}}
     </body>
