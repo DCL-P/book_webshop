@@ -5,6 +5,9 @@
     grid-template-columns: auto auto auto;
     gap:50px;
     padding: 15px;
+
+    height: 500px;
+    overflow: auto;
 }
 
 .book-image{
@@ -30,3 +33,14 @@
         width: 200px;
     }
 };
+
+
+.filter-bar{
+    display: flex;
+    justify-content:space-between;
+    flex-direction:row;
+
+    padding: 10px;
+    background-color: #d8a99d;
+    border-radius: 10px;
+}
