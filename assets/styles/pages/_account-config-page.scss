@@ -1,0 +1,44 @@
+.account-details-container{
+    background-color: #f2cca3;
+    border-radius: 10px;
+
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+
+    min-height: 500px;
+}
+
+.account-details-content{
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    align-items:center;
+    justify-content: center;
+    height: 100%;
+    gap: 30px;
+
+    p{
+        font-size: 20px;
+    }
+}
+
+.account-info{
+    padding: 5px;
+    display: flex;
+    flex-direction: column;
+    justify-content:center;
+    align-items: center;
+    border-bottom: solid black 2px;
+    min-width: 100px;
+    max-width: 300px;
+    max-height: 250px;
+    min-height: 100px;
+    overflow: auto;
+}
+
+.logout-button{
+    @extend .large-buttons;
+    color: red;
+    background-color: rgba(0, 0, 0, 0);
+}
