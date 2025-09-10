@@ -1,0 +1,30 @@
+.book-list-container{
+    background-color: #d0b195;
+    border-radius: 10px;
+}
+
+.book-list-content{
+    padding: 10px;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.book-list-header{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items:center;
+}
+
+.book-list-button{
+    @extend .links;
+    background-color:#b9a08a;
+}
+
+.book-list-creation-button{
+    @extend .links;
+    background-color:#e6d0be;
+    border-radius:10px;
+}

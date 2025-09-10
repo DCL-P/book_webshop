@@ -11,23 +11,29 @@
         <main class="main-content">
             <div class="main-content-nested medium-content-spacing center-content">
                 {%if(has_books == false)%}
-                    <p>no books added to the demo list</p>
+                    <h1>no books added to the demo list</h1>
                 {%else%}
                     {%if(user)%}
-                        <p>your personal book lists</p>
-                        <a href="{{url('app_create_book_list')}}"><button>create new book list</button></a>
+                        <div class="book-list-header">
+                            <h2>your personal book lists</h2>
+                            <a class="book-list-creation-button" href="{{url('app_create_book_list')}}">create new book list</a>
+                        </div>
 
                         
                         {%for book_list in book_lists%}
-                            <div style="background-color: grey">
-                                <h1>{{book_list['name']}}</h1>
-                                <a href="{{url('book-list', {'book_list_id': book_list['id']})}}"><button>view list</button></a>
+                            <div class="book-list-container">
+                                <div class="book-list-content">
+                                    <h1>{{book_list['name']}}</h1>
+                                    <a class="book-list-button" href="{{url('book-list', {'book_list_id': book_list['id']})}}">view list</a>
+                                </div>
                             </div>
                         {%endfor%}
                     {%else%}
-                        <div style="background-color: grey">
-                            <h1>{{book_lists[0]['name']}}</h1>
-                            <a href="{{url('book-list', {'book_list_id': 0})}}"><button>view list</button></a>
+                        <div class="book-list-container">
+                            <div class="book-list-content">
+                                <h1>{{book_lists[0]['name']}}</h1>
+                                <a class="book-list-button" href="{{url('book-list', {'book_list_id': 0})}}">view list</a>
+                            </div>
                         </div>
                     {%endif%}
                 {%endif%}
