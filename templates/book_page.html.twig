@@ -10,38 +10,42 @@
         {{include('template_fragments/header.html.twig')}}
         <main class="main-content">
             <div class="book-container medium-content-spacing center-content">
-                <div>
-                    <div style="display: flex; flex-direction: row; justify-content: space-between; align-items: center">
-                    {%if(user)%}
-                        {{form_start(add_to_booklist_form)}}
-                            {{form_row(add_to_booklist_form.BookLists)}}
-                            <button type="submit">add</button>
-                        {{form_end(add_to_booklist_form)}}
-                    {%else%}
-                        {{form(add_to_temp_booklist_form)}}
-                    {%endif%}
+                <div class="book-info-parent">
+                    <div class="book-info-1">
+                        <div>
+                            {%if(user)%}
+                                {{form_start(add_to_booklist_form, {'attr':{'class':'align-form-items-row'}})}}
+                                    {{form_row(add_to_booklist_form.BookLists)}}
+                                    <button class="add-book-button" type="submit">add</button>
+                                {{form_end(add_to_booklist_form)}}
+                            {%else%}
+                                {{form(add_to_temp_booklist_form, {'attr':{'class':'add-book-button'}})}}
+                            {%endif%}
+                        </div>
+                        <div>
+                            <img class="book-image-res" src="{{ asset('images/' ~ book_data[0].image) }}">
+                        </div>
                     </div>
-                    <img class="book-image-res" src="{{ asset('images/' ~ book_data[0].image) }}">
-                </div>
-                <div class="book-info-container">
-                    <div>    
-                        <h3>GENRE</h3>
-                        <p>{{book_data[0].genre.name}}</p>
-                    </div>
+                    <div class="book-info-container">
+                        <div>    
+                            <h3>GENRE</h3>
+                            <p>{{book_data[0].genre.name}}</p>
+                        </div>
 
-                    <div>
-                        <h3>PRICE</h3>
-                        <p>{{book_data[0].price}}</p>
-                    </div>
-                    
-                    <div>
-                        <h3>AUTHOR</h3>
-                        <p>{{book_data[0].author}}</p>
-                    </div>
+                        <div>
+                            <h3>PRICE</h3>
+                            <p>${{book_data[0].price}}</p>
+                        </div>
+                        
+                        <div>
+                            <h3>AUTHOR</h3>
+                            <p>{{book_data[0].author}}</p>
+                        </div>
 
-                    <div>
-                        <h3>DESCRIPTION</h3>
-                        <p>{{book_data[0].description}}</p>
+                        <div>
+                            <h3>DESCRIPTION</h3>
+                            <p>{{book_data[0].description}}</p>
+                        </div>
                     </div>
                 </div>
             </div>
