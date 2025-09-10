@@ -9,11 +9,18 @@
     <body>
         {{include('template_fragments/header.html.twig')}}
         <main class="main-content">
-            <div class="main-content-nested medium-content-spacing center-content">
-                <h1>SIGN UP</h1>
-                {{submit_message}}
-                {{form(create_account_form)}}
-                <button><a href="{{url('app_login')}}">login</a></button>
+            <div class="main-content-nested medium-content-spacing center-content align-items-center">
+                <div class="form-parent-container">
+                    <h1>SIGN UP</h1>
+                    <h2>{{message}}</h2>
+                    {{form_start(create_account_form, {'attr': {'class': 'form'}})}}
+                        {{form_row(create_account_form.username)}}
+                        {{form_row(create_account_form.email)}}
+                        {{form_row(create_account_form.password)}}
+                        <button class="form-buttons" type="submit">submit</button>
+                        <button class="form-buttons"><a href="{{url('app_login')}}">login</a></button>
+                    {{form_end(create_account_form)}}
+                </div>
             </div>
         </main>
         {{include('template_fragments/footer.html.twig')}}

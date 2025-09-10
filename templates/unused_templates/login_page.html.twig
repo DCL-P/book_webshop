@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Welcome!</title>
+        {{encore_entry_link_tags('app')}}
+        <link rel="icon" type="image/x-icon" href="{{ asset('images/library_icon.png') }}">
+    </head>
+    <body>
+        {{include('template_fragments/header.html.twig')}}
+        <main class="main-content">
+            <div class="main-content-nested medium-content-spacing center-content">
+                <h1>LOGIN</h1>
+                <div>
+                    {{form(login_form)}}
+                    <button><a href="{{url('signup-page')}}">signup</a></button>
+                </div>
+            </div>
+        </main>
+        {{include('template_fragments/footer.html.twig')}}
+    </body>
+</html>
