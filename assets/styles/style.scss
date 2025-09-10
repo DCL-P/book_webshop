@@ -9,7 +9,11 @@
 
 //pages
 @import "pages/_book-page.scss";
-@import "pages/_book-pages.scss";
+@import "pages/_books-page.scss";
 @import "pages/_homepage.scss";
+@import "pages/_login-signup-page.scss";
+@import "pages/_account-config-page.scss";
+@import "pages/_book-list-page.scss";
+@import "pages/_book-lists-page.scss";
 
 //vendors [are imported seperately in the app.js]
