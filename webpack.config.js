@@ -71,6 +71,12 @@ Encore
 
     // uncomment if you're having problems with a jQuery plugin
     //.autoProvidejQuery()
+
+    //copy images for optimisation
+    .copyFiles({
+        from: './assets/images',
+        to: 'images/[path][name].[hash:8].[ext]'
+    })
 ;
 
 module.exports = Encore.getWebpackConfig();
