@@ -21,7 +21,7 @@
                 <div class="fit-main-content book-list-grid medium-content-spacing">
                     {%for book in all_books_array%}
                         <a class="book-image" href="{{ url('book_page', { 'book_id': book.id }) }}"> 
-                            <img class="book-image-res" src="{{ asset('images/' ~ book.image) }}" alt="{{book.name}}_book_image">
+                            <img class="book-image" src="{{ asset('build/images/books/' ~ book.image) }}" alt="{{book.name}}_book_image">
                         </a>
                     {%endfor%}
                 </div>

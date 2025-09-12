@@ -14,7 +14,7 @@
                     <div class="book-info-1">
                         <div>
                             {%if(user)%}
-                                {{form_start(add_to_booklist_form, {'attr':{'class':'align-form-items-row'}})}}
+                                {{form_start(add_to_booklist_form, {'attr':{'class':'add-book-form'}})}}
                                     {{form_row(add_to_booklist_form.BookLists)}}
                                     <button class="add-book-button" type="submit">add</button>
                                 {{form_end(add_to_booklist_form)}}
@@ -23,7 +23,7 @@
                             {%endif%}
                         </div>
                         <div>
-                            <img class="book-image-res" src="{{ asset('images/' ~ book_data[0].image) }}">
+                            <img class="book-image" src="{{ asset('build/images/books/' ~ book_data[0].image) }}">
                         </div>
                     </div>
                     <div class="book-info-container">
