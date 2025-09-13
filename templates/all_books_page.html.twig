@@ -8,13 +8,15 @@
     </head>
     <body>
         {{include('template_fragments/header.html.twig')}}
-        <main class="main-content align-content-vertically">
+        <main class="all-books-list-content main-content align-content-vertically">
                 <div>
                     {{form_start(genre_filter, {'attr':{'class':'filter-bar'}})}}
-                        {{form_row(genre_filter.Genre)}}
-                        <div>
-                            <button type="submit">filter</button>
-                            <button><a href="{{url('all-books-route')}}">reset</a></button>
+                        <div class="filter-content-blocks">
+                            {{form_row(genre_filter.Genre, {'attr':{'class':'links'}})}}
+                        </div>
+                        <div class="filter-content-blocks">
+                            <button class="links" type="submit">filter</button>
+                            <button class="links"><a href="{{url('all-books-route')}}">reset</a></button>
                         </div>
                     {{form_end(genre_filter)}}
                 </div>
