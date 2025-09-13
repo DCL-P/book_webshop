@@ -6,7 +6,11 @@
 }
 
 .m_content{
-    background-color:rgb(218, 168, 155);
+    background: hsla(7.5, 61.5%, 89.8%, 0.2);;
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(6.7px);
+    -webkit-backdrop-filter: blur(6.7px);
 
     border-radius: 25px;
     width:100%;
