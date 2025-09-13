@@ -37,6 +37,8 @@ final class CreateBookListController extends AbstractController
                 $em->persist($new_book_list);
                 $em->flush();
 
+                return $this->redirectToRoute('book-lists');
+
             }
         }
 
