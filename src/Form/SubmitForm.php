@@ -13,7 +13,7 @@ class SubmitForm extends AbstractType
     {
         $builder
             ->add('submit_button', SubmitType::class, [
-                'label'=>'add'
+                'label'=>'add to demo list'
             ])
         ;
     }
