@@ -9,7 +9,7 @@
     <body>
         {{include('template_fragments/header.html.twig')}}
         <main class="main-content">
-            <div class="main-content-nested medium-content-spacing center-content">
+            <div id="book-list-main" class="main-content-nested">
                 <div class="book-list-parent-container">
                     <h1>list: {{book_list_name}}</h1>
                     {%for book in all_books%}
@@ -17,7 +17,7 @@
                             <a class="book-image" href="{{ url('book_page', { 'book_id': book.id }) }}"> 
                                 <img class="book-image" src="{{ asset('build/images/books/' ~ book.image) }}" alt="{{book.name}}_book_image">
                             </a>
-                            <a class="remove-book-button" href="{{url('remove-book', {'book_list_id': book_list_id, 'book_id': book.id})}}">remove book from booklist</a>
+                            <a class="links" href="{{url('remove-book', {'book_list_id': book_list_id, 'book_id': book.id})}}">remove book from booklist</a>
                         </div>
                     {%endfor%}
                 </div>

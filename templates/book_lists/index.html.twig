@@ -8,8 +8,8 @@
     </head>
     <body>
         {{include('template_fragments/header.html.twig')}}
-        <main class="main-content">
-            <div class="main-content-nested medium-content-spacing center-content">
+        <main id="book-lists-main-container" class="main-content">
+            <div class="main-content-nested medium-content-spacing">
                 {%if(has_books == false)%}
                     <h1>no books added to the demo list</h1>
                 {%else%}

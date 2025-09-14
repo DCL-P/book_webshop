@@ -9,7 +9,7 @@
     <body>
         {{include('template_fragments/header.html.twig')}}
         <main class="main-content">
-            <div class="main-content-nested medium-content-spacing center-content align-items-center">
+            <div class="main-content-nested display-f align-content-center-y align-content-center-x">
                 <div class="form-parent-container">
                     <h1>SIGN UP</h1>
                     <h2>{{message}}</h2>
@@ -17,8 +17,8 @@
                         {{form_row(create_account_form.username)}}
                         {{form_row(create_account_form.email)}}
                         {{form_row(create_account_form.password)}}
-                        <button class="form-buttons" type="submit">create account</button>
-                        <button class="form-buttons"><a href="{{url('app_login')}}">to login page</a></button>
+                        <button class="links" type="submit">create account</button>
+                        <a class="links" href="{{url('app_login')}}">to login page</a>
                     {{form_end(create_account_form)}}
                 </div>
             </div>

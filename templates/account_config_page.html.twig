@@ -9,7 +9,7 @@
     <body>
         {{include('template_fragments/header.html.twig')}}
         <main class="main-content">
-            <div class="fit-main-content center-content medium-content-spacing align-items-center">
+            <div class="main-content-nested display-f align-content-center-y align-content-center-x">
                 <div class="account-details-container">
                     <div class="account-details-content">
                         {%if(user)%}
@@ -21,7 +21,7 @@
                                 <span class="fa-solid fa-envelope fa-2xl"></span>
                                 <p>{{user.email}}</p>
                             </div>
-                            <a href="{{url('app_logout')}}"><button class="logout-button">logout</button></a>
+                            <a class="links" href="{{url('app_logout')}}">logout</a>
                         {%else%}
                             <h1>you are not logged in</h1>
                         {%endif%}
