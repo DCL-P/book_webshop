@@ -85,7 +85,6 @@ final class BookPageController extends AbstractController
 
             $logged_in_form->handleRequest($request); //error comes from the request
 
-            //DOESNT WORK!
             if($logged_in_form->isSubmitted() && $logged_in_form->isValid())
             {
                 $selected_name = $logged_in_form->get('BookLists')->getData();
@@ -99,8 +98,9 @@ final class BookPageController extends AbstractController
                 $em->persist($selected_book_list);
 
                 $em->flush();
+
+                return $this->redirectToRoute('book-list', ['book_list_id'=>$selected_book_list->getId()]);
             }
-            //DOESNT WORK!
         }
         
         if(!$user)

@@ -57,6 +57,6 @@ final class BookListController extends AbstractController
 
         $manager->flush();
 
-        return $this->redirectToRoute('book-lists');
+        return $this->redirectToRoute('book-list', ['book_list_id'=>$book_list->getId()]);
     }
 }
