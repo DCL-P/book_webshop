@@ -46,17 +46,33 @@ final class BookListController extends AbstractController
     }
 
     #[Route('remove-book-list/{book_list_id}/{book_id}', name: 'remove-book')]
-    public function removeBookFromList($book_list_id, $book_id, EntityManagerInterface $manager)
+    public function removeBookFromList(RequestStack $rs, $book_list_id, $book_id, EntityManagerInterface $manager)
     {
-        $book_list = $manager->getRepository(BookLists::class)->find($book_list_id);
-        $book = $manager->getRepository(Books::class)->find($book_id);
+        $user = $this->getUser();
 
-        $book_list->removeBook($book);
+        if($user){
+            $book_list = $manager->getRepository(BookLists::class)->find($book_list_id);
+            $book = $manager->getRepository(Books::class)->find($book_id);
 
-        $manager->persist($book_list);
+            $book_list->removeBook($book);
 
-        $manager->flush();
+            $manager->persist($book_list);
 
-        return $this->redirectToRoute('book-list', ['book_list_id'=>$book_list->getId()]);
+            $manager->flush();
+        } else {
+            $session = $rs->getSession();
+
+            $book_data = $session->get('temp_book_list');
+
+            $bookKey = array_search($book_id, $book_data['books']);
+
+
+
+            unset($book_data['books'][$bookKey ]);
+
+            $session->set('temp_book_list', $book_data);
+        }
+
+        return $this->redirectToRoute('book-list', ['book_list_id'=>$book_list_id]);
     }
 }

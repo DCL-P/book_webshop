@@ -30,31 +30,26 @@ final class BookPageController extends AbstractController
     {
 
         $message = "This book has been successfully added to your book list!";
-        $user = $this->getUser();
+        
+        $session = $this->rm->getSession();
 
-        if($user){
+        $temp_guest_list = $session->get('temp_book_list', [
+            'name' => 'demo list',
+            'books' => []
+        ]);
 
-            
+
+        if(!in_array($book_id, $temp_guest_list['books']))
+        {
+            $temp_guest_list['books'][] = $book_id;
         } else {
-            $session = $this->rm->getSession();
-
-            $temp_guest_list = $session->get('temp_book_list', [
-                'name' => 'demo list',
-                'books' => []
-            ]);
-
-
-            if(!in_array($book_id, $temp_guest_list['books']))
-            {
-                $temp_guest_list['books'][] = $book_id;
-            } else {
-                $message = "This book already exist in your book list!";
-            }
-
-            $session->set('temp_book_list', $temp_guest_list);
-
-            return $message;
+            $message = "This book already exist in your book list!";
         }
+
+        $session->set('temp_book_list', $temp_guest_list);
+
+        return $message;
+    
 
     }
 
@@ -111,6 +106,7 @@ final class BookPageController extends AbstractController
             if($temp_form->isSubmitted()){
                 if($temp_form->get('submit_button')->isClicked()){
                     $message = $this->addBookToList($book_id);
+                    return $this->redirectToRoute('book-lists');
                 }
             }
         }
