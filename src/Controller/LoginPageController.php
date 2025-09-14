@@ -15,7 +15,7 @@ use App\Form\UserForm;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface; //this interface makes sure you can easily hash yan inputted password
 use Symfony\Component\Security\Http\Authentication\UserAuthenticatorInterface;
 
-//for making sure main authentification featues are available (like login etc)
+//for making sure main authentification features are available (like login etc)
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 
 
@@ -39,7 +39,7 @@ final class LoginPageController extends AbstractController
         //fetches the error that appears if the login has failed
         $error = $this->au->getLastAuthenticationError();
 
-        //for fetching the last submitted username (too make sure the user doesn't have to input their username again if an error accurs)
+        //for fetching the last submitted username (too make sure the user doesn't have to input their username again if an error accurse)
         $lastUsername = $this->au->getLastUsername();
 
         $form = $this->createForm(UserForm::class);
