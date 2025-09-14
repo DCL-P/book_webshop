@@ -51,4 +51,11 @@ class BooksRepository extends ServiceEntityRepository
                 ->getQuery()
                 ->getResult();
        }
+
+       //adds a book to a book list
+    //    public function AddBookToBooklist($value)
+    //    {
+    //         return $this->createQueryBuilder('b')
+    //             ->join('b.id', )
+    //    }
 }

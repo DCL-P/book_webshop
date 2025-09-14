@@ -16,7 +16,7 @@ class GenreFiltersForm extends AbstractType
         $builder
             ->add('Genre', EntityType::class, [
                 'class' => Genre::class,
-                'choice_label' => 'name',
+                'choice_label' => 'name'
             ])
         ;
     }
