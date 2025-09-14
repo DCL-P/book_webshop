@@ -37,6 +37,9 @@ class SignupPageController extends AbstractController
 
         $form->handleRequest($request);
 
+        $signup_render = $this->render('signup_page.html.twig', ['create_account_form' => $form, 'message'=>$this->message]);
+
+
         if($form->IsSubmitted() && $form->IsValid()){
 
             //fetching all the data from the submitted form
@@ -54,13 +57,9 @@ class SignupPageController extends AbstractController
             $this->em->persist($user);
             $this->em->flush();
 
-            $submit_message = 'You successfuly created a new account! :D';
-            return $this->render('signup_page.html.twig', ['create_account_form' => $form, 'submit_message' => $submit_message]);
-        } else {
-            $submit_message = 'Your account creation has failed :/ Have you tried inputing all the fields correctly?';
-            return $this->render('signup_page.html.twig', ['create_account_form' => $form, 'submit_message' => $submit_message]);
+            return $this->redirectToRoute('app_login');
         }
 
-        return $this->render('signup_page.html.twig', ['create_account_form' => $form]);
+        return $signup_render;
     }
 }
