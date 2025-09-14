@@ -1,14 +1,15 @@
 
 
 #homepage-banner-content{
-    display: flex;
-    justify-content: space-between;
+    @extend .display-f;
+    @extend .space-between;
+    @extend .align-content-center-y;
+    height: 100%;
 }
 
 #homepage-banner-text{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+    @extend .display-f-column;
+    @extend .align-content-center-x;
 }
 
 #homepage-banner-image{

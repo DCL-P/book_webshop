@@ -1,0 +1,10 @@
+.book-list-creation-form{
+    @extend .display-f-row;
+    @extend .content-spacing;
+    @extend .align-content-center-y;
+
+    div{
+        @extend .display-f-row;
+        @extend .align-content-center-y;
+    }
+}

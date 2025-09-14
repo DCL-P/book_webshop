@@ -1,21 +1,18 @@
 .book-container{
-    display: flex;
-    flex-direction: row;
-    align-items: center;
+    @extend .display-f-row;
+    @extend .align-content-center-y;
 }
 
 .book-info-parent{
-    display: flex;
-    flex-direction:row;
+    @extend .display-f-row;
     max-height: 700px;
 
     gap: 65px;
 }
 
 .book-info-1{
-    display: flex;
-    flex-direction:column;
-    justify-content: space-between;
+    @extend .display-f-column;
+    @extend .space-between;
 
     margin-top:16px;
     margin-bottom:16px;
@@ -28,18 +25,34 @@
 }
 
 .book-info-2{
+    @extend .smooth-corners;
+    position: relative;
 
-}
+    background-color:rgba(1, 1, 1, 0.1); 
+    width: 100%; 
+    height: 250px; 
 
-.add-book-button{
-    @extend .links;
-    background-color: #ffffff;
-    padding: 12px;
-    border-radius: 10px;
+    .book-info-2-image{
+        position: absolute; 
+        top: 20px; 
+        left: 20px;
+    }
+
+    .book-info-2-content{
+
+        @extend .display-f-column;
+        @extend .align-content-center-x;
+        @extend .medium-padding;
+        position: absolute; 
+
+        height: 100%; 
+        right: 0; 
+    }
 }
 
 .add-book-form{
-    display: flex;
-    justify-content: space-between;
-    align-items:center;
+    @extend .display-f;
+    @extend .space-between;
+    @extend .align-content-center-y;
+    @extend .hide-symfony-form-label;
 }

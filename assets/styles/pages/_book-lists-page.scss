@@ -1,21 +1,24 @@
+#book-lists-main-container{
+    @extend .display-f-column;
+    @extend .align-content-center-x;
+}
+
 .book-list-container{
-    background-color: #d0b195;
-    border-radius: 10px;
+    @extend .smooth-corners;
+    background-color: #e1c8b0;
 }
 
 .book-list-content{
-    padding: 10px;
-
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+    @extend .display-f;
+    @extend .space-between;
+    @extend .align-content-center-y;
+    @extend .medium-padding;
 }
 
 .book-list-header{
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items:center;
+    @extend .display-f-row;
+    @extend .space-between;
+    @extend .align-content-center-y;
 }
 
 .book-list-button{
@@ -25,6 +28,7 @@
 
 .book-list-creation-button{
     @extend .links;
+    @extend .smooth-corners;
+
     background-color:#e6d0be;
-    border-radius:10px;
 }

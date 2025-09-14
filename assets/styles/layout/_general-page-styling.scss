@@ -15,6 +15,8 @@ body{
 }
 
 
+//general page styling
+
 
 .main-content{
     width: 70%;
@@ -44,6 +46,41 @@ body{
     border-radius: 25px;
 }
 
+
+
+//padding
+
+.padding{
+    padding: 5px;
+}
+
+.medium-padding{
+    padding: 10px;
+}
+
+.large-padding{
+    padding: 20px;
+}
+
+
+//display flex
+
+.display-f{
+    display: flex;
+}
+
+.display-f-column{
+    display:flex;
+    flex-direction:column;
+}
+
+.display-f-row{
+    display:flex;
+    flex-direction:row;
+}
+
+//content spacing (needs to be used with one of the display flex classes)
+
 .content-spacing{
     gap: 10px;
 }
@@ -56,44 +93,36 @@ body{
     gap: 40px;
 }
 
-.center-content{
-    display:flex;
-    flex-direction:column;
-    justify-content:center;
+//alignment (needs to be used with one of the display flex classes)
+
+.space-between{
+    justify-content: space-between;
 }
 
-.remove-default-styling{
-    margin: 0;
+.align-content-center-x{
+    justify-content: center;
 }
 
-.content-padding{
-    padding: 10px;
+.align-content-center-y{
+    align-items:center;
+    align-content:center;
 }
 
-.large-buttons{
-    background-color: #f2f2f2;
-    font-size: 30px;
-    border-radius: 10px;
-}
 
+
+//miscellaneous
 .links{
     background-color: #937d7a;
     border-radius: 25px;
     padding: 10px;
     min-width: 50px;
 
+    border: none;
+    font-size: 15px;
+
     display: flex;
     justify-content: center;
     text-decoration: none;
-}
-
-.align-content-vertically{
-    flex-direction: column;
-}
-
-.align-form-items-row{
-    display:flex;
-    flex-direction:row;
 }
 
 .hide-symfony-form-label{
@@ -102,4 +131,12 @@ body{
             display: none;
         }
     }
+}
+
+.smooth-corners{
+    border-radius: 10px;
+}
+
+.remove-default-styling{
+    margin: 0;
 }

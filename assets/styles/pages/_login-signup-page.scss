@@ -3,16 +3,17 @@
 }
 
 .form-parent-container{
-    background-color: #ceb0b0;
-    border-radius:10px;
-    padding: 10px;
+    @extend .smooth-corners;
+    @extend .medium-padding;
+
+    background-color: #e6d2d2;
+
     width: 500px;
     height: 650px;
 }
 
 .form{
-    display: flex;
-    flex-direction:column;
+    @extend .display-f-column;
     gap: 40px;
 
     label{

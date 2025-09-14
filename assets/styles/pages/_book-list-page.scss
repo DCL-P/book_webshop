@@ -1,24 +1,26 @@
+#book-list-main{
+    @extend .display-f-column;
+    @extend .align-content-center-x;
+}
+
 .book-list-parent-container{
-    background-color: #d0b195;
-    border-radius: 10px;
-    padding: 10px;
+    @extend .display-f-column;
+    @extend .align-content-center-y; 
+    @extend .smooth-corners;
+    @extend .medium-padding;
+    @extend .large-content-spacing;
 
-    gap: 45px;
-
-    display:flex;
-    flex-direction: column;
-    align-items:center;
+    background-color: #d5bcba;
 }
 
 .book-content{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items:center;
-    gap:5px;
+    @extend .display-f-column;
+    @extend .align-content-center-y; 
+    @extend .align-content-center-x; 
+    @extend .content-spacing;
 }
 
 .remove-book-button{
     @extend .links;
-    padding:5px;
+    @extend .padding;
 }
