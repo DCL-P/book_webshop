@@ -1,11 +1,11 @@
 // base [nothing has been added yet]
 // @import "base/";
 
+//layout (lot of stylesheets make use of the classes in this file, which is why it needs to be imported first)
+@import "layout/_general-page-styling.scss";
+
 // components
 @import "components/_header-footer.scss";
-
-//layout
-@import "layout/_general-page-styling.scss";
 
 //pages
 @import "pages/_book-page.scss";
@@ -15,5 +15,6 @@
 @import "pages/_account-config-page.scss";
 @import "pages/_book-list-page.scss";
 @import "pages/_book-lists-page.scss";
+@import "pages/_book-list-creation-page.scss";
 
 //vendors [are imported seperately in the app.js]
