@@ -37,7 +37,7 @@ class SignupPageController extends AbstractController
 
         $form->handleRequest($request);
 
-        $signup_render = $this->render('signup_page.html.twig', ['create_account_form' => $form, 'message'=>$this->message]);
+        $signup_render = $this->render('signup_page.html.twig', ['create_account_form' => $form]);
 
 
         if($form->IsSubmitted() && $form->IsValid()){
