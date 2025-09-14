@@ -32,7 +32,7 @@ final class BookListController extends AbstractController
             $list_name = $book_list->getName();
         }
 
-        if(!empty($temp_book_list))
+        if(!empty($temp_book_list && empty($user)))
         {
             $all_books = $manager->getRepository(Books::class)->findBy(['id'=>$temp_book_list['books']]);
 
