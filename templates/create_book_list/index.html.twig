@@ -9,10 +9,10 @@
     <body>
         {{include('template_fragments/header.html.twig')}}
         <main class="main-content">
-            <div class="main-content-nested medium-content-spacing center-content">
-                    {{form_start(bookListForm)}}
+            <div class="main-content-nested display-f-row align-content-center-y align-content-center-x">
+                    {{form_start(bookListForm, {'attr':{'class':'book-list-creation-form'}})}}
                         {{form_row(bookListForm.name)}}
-                        <button type="submit">create</button>
+                        <button class="links" type="submit">create</button>
                     {{form_end(bookListForm)}}
                 </div>
             </div>
