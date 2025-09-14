@@ -53,29 +53,6 @@ final class BookListsController extends AbstractController
             }
         }
 
-        // $all_book_ids = [];
-
-        // $all_books = [];
-
-
-        // //in more steps, since otherwise i hit symfony byte limit
-        // if(!empty($temp_book_list['books']))
-        // {
-        //     $all_books = $manager->getRepository(Books::class)->findBy(['id' => $temp_book_list['books']]);
-        //     foreach($temp_book_list['books'] as $book_id){
-        //         $all_book_ids[] = $book_id; 
-        //     }
-
-        //     foreach($all_book_ids as $id){
-        //         $all_books = $manager->getRepository(Books::class)->findBy(['id' => $temp_book_list['books']]);
-        //         $all_books[$id] = $book;
-        //     }
-        // }
-
-        
-
-
-
         return $this->render('book_lists/index.html.twig', ['user'=>$user, 'book_lists'=>$book_lists, 'has_books'=>$has_books]);
     }
 }
